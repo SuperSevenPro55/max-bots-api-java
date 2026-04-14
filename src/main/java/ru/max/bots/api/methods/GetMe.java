@@ -17,7 +17,7 @@ public class GetMe implements MaxRequest<BotInfo> {
     public Request buildRequest(String baseUrl, String token) {
         return new Request.Builder()
                 .header("Authorization", token)
-                .url(baseUrl)
+                .url(baseUrl + "/me")
                 .get()
                 .build();
     }
