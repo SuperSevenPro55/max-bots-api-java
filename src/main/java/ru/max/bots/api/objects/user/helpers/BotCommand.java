@@ -1,4 +1,4 @@
-package ru.max.bots.api.objects;
+package ru.max.bots.api.objects.user.helpers;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.max.bots.api.interfaces.MaxApiObject;

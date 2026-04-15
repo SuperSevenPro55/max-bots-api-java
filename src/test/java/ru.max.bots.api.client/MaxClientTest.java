@@ -6,8 +6,8 @@ import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import ru.max.bots.api.methods.GetMe;
-import ru.max.bots.api.objects.BotInfo;
+import ru.max.bots.api.methods.get.GetMe;
+import ru.max.bots.api.objects.user.BotInfo;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.jupiter.api.Assertions.*;
