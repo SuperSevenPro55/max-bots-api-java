@@ -6,6 +6,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import ru.max.bots.api.exceptions.MaxApiException;
 import ru.max.bots.api.interfaces.MaxRequest;
+import ru.max.bots.api.utils.UrlUtils;
 
 import java.io.IOException;
 
@@ -28,11 +29,9 @@ public class MaxClient {
      */
     public MaxClient(String botToken, String baseUrl) {
         this.botToken = botToken;
-        // Если URL заканчивается на слеш, обрезаем его
-        this.baseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
+        this.baseUrl = UrlUtils.urlUnification(baseUrl);
         this.client = new OkHttpClient();
         this.mapper = new ObjectMapper();
-
     }
 
 
