@@ -9,9 +9,6 @@ import org.junit.jupiter.api.Test;
 import ru.max.bots.api.methods.GetMe;
 import ru.max.bots.api.objects.BotInfo;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,46 +19,54 @@ class MaxClientTest {
 
     @BeforeAll
     static void setUp() {
-        // 1. Запускаем локальный фейковый сервер WireMock на случайном порту
         wireMockServer = new WireMockServer(WireMockConfiguration.wireMockConfig().dynamicPort());
         wireMockServer.start();
         WireMock.configureFor("localhost", wireMockServer.port());
 
-        // 2. Инициализируем нашего клиента
-        // ВАЖНО: Мы передаем адрес локального сервера вместо реального API MAX
         String testBaseUrl = "http://localhost:" + wireMockServer.port();
         client = new MaxClient("test-token", testBaseUrl);
     }
 
     @AfterAll
     static void tearDown() {
-        // Останавливаем сервер после выполнения всех тестов
         wireMockServer.stop();
     }
 
     @Test
     void testGetMeSuccess() throws Exception {
-        // 1. Читаем наш JSON-файл с диска в строку
-        String jsonBody = new String(Files.readAllBytes(Paths.get("src/test/resources/responses/get_me_success.json")));
-
-        // 2. Настраиваем правило для WireMock:
-        // "Если придет GET-запрос на /me с заголовком Authorization: test-token,
-        // верни статус 200 и содержимое нашего JSON-файла"
+        // ЭЛЕГАНТНЫЙ WIREMOCK:
+        // Используем .withBodyFile(), WireMock сам найдет файл в папке __files
         stubFor(get(urlEqualTo("/me"))
                 .withHeader("Authorization", equalTo("test-token"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
-                        .withBody(jsonBody)));
+                        .withBodyFile("get_me_success.json")));
 
-        // 3. Вызываем метод, который мы тестируем
         BotInfo botInfo = client.execute(new GetMe());
 
-        // 4. Проверяем, что Jackson правильно превратил JSON в Java-объект
+        // 1. Проверяем базовые поля (учитываем, что user_id может быть Long)
         assertNotNull(botInfo);
-        assertEquals(12345, botInfo.getUserId());
+        assertEquals(12345L, botInfo.getUserId());
         assertEquals("Bot_Name", botInfo.getFirstName());
         assertEquals("example_bot", botInfo.getUsername());
         assertTrue(botInfo.getIsBot());
+        assertEquals(1739184000000L, botInfo.getLastActivityTime());
+
+        // 2. Проверяем новые поля, специфичные для BotInfo
+        assertNotNull(botInfo.getDescription());
+        assertTrue(botInfo.getDescription().startsWith("🚀 Автовыдача"));
+        assertEquals("https://i.oneme.ru/i?r=BTFjO43w8Yr1OSJ4tcurq5HiGFXTgmcNFCqWsL5eFLaBsq_WO3gNo_PCmzpboct_jy8", botInfo.getAvatarUrl());
+        assertEquals("https://i.oneme.ru/i?r=BTFjO43w8Yr1OSJ4tcurq5HiHBeIhpWE6pyKskhnmJMdXK_WO3gNo_PCmzpboct_jy8", botInfo.getFullAvatarUrl());
+
+        // 3. Проверяем десериализацию массива команд
+        assertNotNull(botInfo.getCommands());
+        assertEquals(2, botInfo.getCommands().size());
+
+        // В record поля вызываются как методы без get: name() вместо getName()
+        assertEquals("start", botInfo.getCommands().get(0).name());
+        assertEquals("Главное меню", botInfo.getCommands().get(0).description());
+
+        assertEquals("help", botInfo.getCommands().get(1).name());
     }
 }
