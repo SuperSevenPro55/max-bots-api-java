@@ -1,8 +1,8 @@
-package ru.max.bots.api.methods;
+package ru.max.bots.api.methods.get;
 
 import okhttp3.Request;
 import ru.max.bots.api.interfaces.MaxRequest;
-import ru.max.bots.api.objects.BotInfo;
+import ru.max.bots.api.objects.user.BotInfo;
 
 /**
  * Метод возвращает информацию о боте, который идентифицируется с помощью токена доступа access_token.

@@ -6,6 +6,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import ru.max.bots.api.exceptions.MaxApiException;
 import ru.max.bots.api.interfaces.MaxRequest;
+import ru.max.bots.api.utils.UrlUtils;
 
 import java.io.IOException;
 
@@ -28,7 +29,7 @@ public class MaxClient {
      */
     public MaxClient(String botToken, String baseUrl) {
         this.botToken = botToken;
-        this.baseUrl = baseUrl;
+        this.baseUrl = UrlUtils.urlUnification(baseUrl);
         this.client = new OkHttpClient();
         this.mapper = new ObjectMapper();
     }
@@ -58,7 +59,7 @@ public class MaxClient {
                 throw new MaxApiException("Тело ответа пустое");
             }
 
-            return mapper.readValue(response.body().string(), request.getResponseType());
+            return mapper.readValue(response.body().byteStream(), request.getResponseType());
         } catch (IOException e) {
             throw new MaxApiException("Ошибка сети при выполнении запроса", e);
         }

@@ -1,4 +1,4 @@
-package ru.max.bots.api.objects;
+package ru.max.bots.api.objects.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
+import ru.max.bots.api.objects.user.helpers.BotCommand;
 
 import java.util.List;
 
