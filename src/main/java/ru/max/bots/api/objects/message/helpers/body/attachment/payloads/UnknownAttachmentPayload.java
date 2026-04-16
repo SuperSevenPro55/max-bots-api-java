@@ -1,4 +1,4 @@
-package ru.max.bots.api.objects.message.helpers.body.attachment;
+package ru.max.bots.api.objects.message.helpers.body.attachment.payloads;
 
 /**
  * Заглушка для неизвестных типов вложений

@@ -1,23 +1,56 @@
 package ru.max.bots.api.objects.message.helpers.body.attachment;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.experimental.SuperBuilder;
 import ru.max.bots.api.interfaces.MaxApiObject;
+import ru.max.bots.api.objects.message.helpers.body.attachment.payloads.AttachmentPayload;
 
 /**
- * Обертка для вложений сообщения.
- * @param type тип вложения
- * @param payload содержимое вложения
+ * Общая обертка для вложений сообщения.
  * @author SuperSevenPro55
  * @version 0.2
  */
 
-public record Attachment(
-    @JsonProperty("type")
-    @NonNull
-    String type,
+@Data
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.EXISTING_PROPERTY,
+        property = "type",
+        visible = true,
+        defaultImpl = Attachment.class
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = AttachmentAudio.class, name = "audio"),
+        @JsonSubTypes.Type(value = AttachmentFile.class, name = "file"),
+        @JsonSubTypes.Type(value = AttachmentVideo.class, name = "video"),
+        @JsonSubTypes.Type(value = AttachmentSticker.class, name = "sticker"),
+        @JsonSubTypes.Type(value = AttachmentContact.class, name = "contact"),
+        @JsonSubTypes.Type(value = AttachmentShare.class, name = "share")
 
-    @JsonProperty("payload")
+})
+public class Attachment implements MaxApiObject {
+    private final String TYPE = "type";
+    private final String PAYLOAD = "payload";
+
+    /**
+     * Тип вложения.
+     */
+    @JsonProperty(TYPE)
     @NonNull
-    AttachmentPayload payload
-) implements MaxApiObject {}
+    private String type;
+
+    /**
+     * Содержание вложения.
+     */
+    @JsonProperty(PAYLOAD)
+    private AttachmentPayload payload;
+}
