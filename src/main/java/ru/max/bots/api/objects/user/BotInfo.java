@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
-import ru.max.bots.api.objects.user.helpers.BotCommand;
 
 import java.util.List;
 

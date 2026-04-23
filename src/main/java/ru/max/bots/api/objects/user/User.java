@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
-import ru.max.bots.api.interfaces.MaxApiObject;
+import ru.max.bots.api.objects.MaxApiObject;
 
 /**
  * Объект, описывающий один из вариантов наследования:

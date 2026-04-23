@@ -6,7 +6,12 @@ import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import ru.max.bots.api.exceptions.MaxApiException;
 import ru.max.bots.api.methods.get.GetMe;
+import ru.max.bots.api.methods.post.sendmessage.SendMessage;
+import ru.max.bots.api.methods.post.sendmessage.SendMessageResponse;
+import ru.max.bots.api.objects.message.Message;
+import ru.max.bots.api.objects.newmessagebody.NewMessageBody;
 import ru.max.bots.api.objects.user.BotInfo;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
@@ -88,5 +93,41 @@ class MaxClientTest {
         assertNotNull(botInfo);
         assertTrue(botInfo.getIsBot());
         assertNotNull(botInfo.getUsername());
+    }
+
+    @Test
+    void testRealSendMessageByChatId() throws Exception {
+        // 1. Инициализация (токен берем из переменных окружения для безопасности)
+        String realToken = System.getenv("BOT_MAX_TOKEN");
+        String baseUrl = "https://platform-api.max.ru/";
+        MaxClient client = new MaxClient(realToken, baseUrl);
+
+        // 2. Твой реальный ID чата
+        Long targetChatId = 390388082L;
+
+        // 3. Тело сообщения
+        NewMessageBody body = NewMessageBody.builder()
+                .text("Проверка отправки по Chat ID! 🚀")
+                .build();
+
+        // 4. Сборка запроса. Используем .chatId() вместо .userId()
+        SendMessage request = SendMessage.builder()
+                .chatId(targetChatId)
+                .body(body)
+                .build();
+
+        System.out.println("Отправка сообщения в чат " + targetChatId + "...");
+
+        try {
+            SendMessageResponse response = client.execute(request);
+
+            Message sentMessage = response.getMessage();
+
+            System.out.println("✅ Успешно! ID сообщения: " + sentMessage.getBody().mid());
+            assertNotNull(sentMessage);
+        } catch (MaxApiException e) {
+            System.err.println("❌ Ошибка API: " + e.getMessage());
+            throw e;
+        }
     }
 }

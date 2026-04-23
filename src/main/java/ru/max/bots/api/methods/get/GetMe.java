@@ -1,7 +1,7 @@
 package ru.max.bots.api.methods.get;
 
 import okhttp3.Request;
-import ru.max.bots.api.interfaces.MaxRequest;
+import ru.max.bots.api.methods.MaxRequest;
 import ru.max.bots.api.objects.user.BotInfo;
 
 /**

@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.extern.jackson.Jacksonized;
-import ru.max.bots.api.interfaces.MaxApiObject;
-import ru.max.bots.api.objects.message.helpers.link.LinkedMessage;
-import ru.max.bots.api.objects.message.helpers.body.MessageBody;
-import ru.max.bots.api.objects.message.helpers.stat.MessageStat;
-import ru.max.bots.api.objects.message.helpers.recipient.Recipient;
+import ru.max.bots.api.objects.MaxApiObject;
+import ru.max.bots.api.objects.message.link.LinkedMessage;
+import ru.max.bots.api.objects.message.body.MessageBody;
+import ru.max.bots.api.objects.message.stat.MessageStat;
+import ru.max.bots.api.objects.message.recipient.Recipient;
 import ru.max.bots.api.objects.user.User;
 
 /**
@@ -44,14 +44,12 @@ public class Message implements MaxApiObject {
      * Получатель сообщения. Может быть пользователем или чатом.
      */
     @JsonProperty(RECIPIENT)
-    @NonNull
     private Recipient recipient;
 
     /**
      * Время создания сообщения в формате Unix-time (мс).
      */
     @JsonProperty(TIMESTAMP)
-    @NonNull
     private Long timestamp;
 
     /**

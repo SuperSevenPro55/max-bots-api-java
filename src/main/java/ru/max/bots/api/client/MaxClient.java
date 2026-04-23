@@ -5,7 +5,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import ru.max.bots.api.exceptions.MaxApiException;
-import ru.max.bots.api.interfaces.MaxRequest;
+import ru.max.bots.api.methods.MaxRequest;
 import ru.max.bots.api.utils.UrlUtils;
 
 import java.io.IOException;
