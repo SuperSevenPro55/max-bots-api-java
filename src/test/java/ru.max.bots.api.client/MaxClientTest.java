@@ -69,4 +69,24 @@ class MaxClientTest {
 
         assertEquals("help", botInfo.getCommands().get(1).name());
     }
+
+    @Test
+    void testRealGetMe() throws Exception {
+        String realToken = System.getenv("BOT_MAX_TOKEN");
+
+        String baseUrl = "https://platform-api.max.ru/";
+
+        MaxClient client = new MaxClient(realToken, baseUrl);
+
+        BotInfo botInfo = client.execute(new GetMe());
+
+        System.out.println("Подключено к боту: " + botInfo.getFirstName());
+        System.out.println("Username: @" + botInfo.getUsername());
+        System.out.println("ID: " + botInfo.getUserId());
+
+        // 5. Базовые проверки
+        assertNotNull(botInfo);
+        assertTrue(botInfo.getIsBot());
+        assertNotNull(botInfo.getUsername());
+    }
 }
