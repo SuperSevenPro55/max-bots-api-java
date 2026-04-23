@@ -1,5 +1,6 @@
 package ru.max.bots.api.methods.get;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.Request;
 import ru.max.bots.api.methods.MaxRequest;
 import ru.max.bots.api.objects.user.BotInfo;
@@ -14,7 +15,7 @@ import ru.max.bots.api.objects.user.BotInfo;
 
 public class GetMe implements MaxRequest<BotInfo> {
     @Override
-    public Request buildRequest(String baseUrl, String token) {
+    public Request buildRequest(String baseUrl, String token, ObjectMapper objectMapper) {
         return new Request.Builder()
                 .header("Authorization", token)
                 .url(baseUrl + "/me")

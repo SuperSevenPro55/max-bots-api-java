@@ -16,10 +16,10 @@ public class SendMessage implements MaxRequest<SendMessageResponse> {
     private final Boolean disableLinkPreview;
     private final NewMessageBody body;
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+
 
     @Override
-    public Request buildRequest(String baseUrl, String botToken) {
+    public Request buildRequest(String baseUrl, String botToken, ObjectMapper objectMapper) {
         // 1. Формируем URL с Query-параметрами
         HttpUrl.Builder urlBuilder = Objects.requireNonNull(HttpUrl.parse(baseUrl + "/messages")).newBuilder();
 
@@ -33,7 +33,7 @@ public class SendMessage implements MaxRequest<SendMessageResponse> {
 
         try {
             // 2. Сериализуем тело запроса
-            String jsonBody = mapper.writeValueAsString(body);
+            String jsonBody = objectMapper.writeValueAsString(body);
             RequestBody okBody = RequestBody.create(
                     jsonBody,
                     MediaType.parse("application/json; charset=utf-8")

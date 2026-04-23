@@ -1,5 +1,6 @@
 package ru.max.bots.api.methods;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.Request;
 
 /**
@@ -16,7 +17,7 @@ public interface MaxRequest<T> {
      * @param token токен бота
      * @return сформированный запрос
      */
-    Request buildRequest(String baseUrl, String token);
+    Request buildRequest(String baseUrl, String token, ObjectMapper objectMapper);
 
     /**
      * Метод для получения класса ответа от сервера

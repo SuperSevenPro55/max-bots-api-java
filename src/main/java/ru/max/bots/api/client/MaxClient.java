@@ -48,7 +48,7 @@ public class MaxClient {
      * или если тело ответа оказалось пустым
      */
     public <T> T execute(MaxRequest<T> request) throws MaxApiException {
-        Request okRequest = request.buildRequest(baseUrl, botToken);
+        Request okRequest = request.buildRequest(baseUrl, botToken, mapper);
 
         try (Response response = client.newCall(okRequest).execute()) {
             if (!response.isSuccessful()) {
