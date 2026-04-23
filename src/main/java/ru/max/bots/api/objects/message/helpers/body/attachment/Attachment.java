@@ -38,19 +38,16 @@ import ru.max.bots.api.objects.message.helpers.body.attachment.payloads.Attachme
 
 })
 public class Attachment implements MaxApiObject {
-    private final String TYPE = "type";
-    private final String PAYLOAD = "payload";
-
     /**
      * Тип вложения.
      */
-    @JsonProperty(TYPE)
+    @JsonProperty("type")
     @NonNull
     private String type;
 
     /**
      * Содержание вложения.
      */
-    @JsonProperty(PAYLOAD)
+    @JsonProperty("payload")
     private AttachmentPayload payload;
 }

@@ -12,7 +12,7 @@ import lombok.NonNull;
  */
 
 public record MediaAttachmentPayload(
-        @JsonProperty("video")
+        @JsonProperty("url")
         @NonNull
         String url,
 
