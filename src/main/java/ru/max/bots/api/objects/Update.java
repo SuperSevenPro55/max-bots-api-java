@@ -9,14 +9,15 @@ import ru.max.bots.api.objects.message.Message;
  */
 @Data
 public class Update implements MaxApiObject {
-
     @JsonProperty("update_id")
     private long updateId;
 
-    /**
-     * Новое входящее сообщение.
-     * Если в будущем добавятся нажатия кнопок (callback), они добавятся сюда же.
-     */
+    @JsonProperty("update_type")
+    private String updateType; // message_created, message_callback, user_added
+
+    @JsonProperty("timestamp")
+    private Long timestamp;
+
     @JsonProperty("message")
     private Message message;
 }

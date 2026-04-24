@@ -2,6 +2,7 @@ package ru.max.bots.api.methods;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.Request;
+import ru.max.bots.api.methods.get.GetUpdatesResponse;
 
 /**
  * Базовый интерфейс для всех запросов к MAX API
@@ -21,6 +22,7 @@ public interface MaxRequest<T> {
 
     /**
      * Метод для получения класса ответа от сервера
+     *
      * @return класс ответа
      */
     Class<T> getResponseType();

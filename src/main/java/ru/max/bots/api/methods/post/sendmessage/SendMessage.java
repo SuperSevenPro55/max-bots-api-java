@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Builder;
 import ru.max.bots.api.methods.MaxRequest;
+import ru.max.bots.api.methods.get.GetUpdatesResponse;
 import ru.max.bots.api.objects.newmessagebody.NewMessageBody;
 import okhttp3.*;
 

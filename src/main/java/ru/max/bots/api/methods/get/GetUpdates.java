@@ -6,12 +6,11 @@ import okhttp3.HttpUrl;
 import okhttp3.Request;
 import ru.max.bots.api.methods.MaxRequest;
 import ru.max.bots.api.objects.Update;
-import ru.max.bots.api.utils.UrlUtils;
 
 import java.util.Objects;
 
 @Builder
-public class GetUpdates implements MaxRequest<Update[]> {
+public class GetUpdates implements MaxRequest<GetUpdatesResponse> {
 
     private final Long offset;
     private final Integer timeout;
@@ -19,7 +18,7 @@ public class GetUpdates implements MaxRequest<Update[]> {
     @Override
     public Request buildRequest(String baseUrl, String token, ObjectMapper objectMapper) {
         // UrlUtils подхватит baseUrl и приклеит getUpdates без ошибок со слэшами
-        String fullUrl = baseUrl + "getUpdates";
+        String fullUrl = baseUrl + "/updates";
 
         // Для добавления ?offset=... используем штатный HttpUrl из OkHttp
         HttpUrl.Builder urlBuilder = Objects.requireNonNull(HttpUrl.parse(fullUrl)).newBuilder();
@@ -35,7 +34,8 @@ public class GetUpdates implements MaxRequest<Update[]> {
     }
 
     @Override
-    public Class<Update[]> getResponseType() {
-        return Update[].class;
+
+    public Class<GetUpdatesResponse> getResponseType() {
+        return GetUpdatesResponse.class;
     }
 }

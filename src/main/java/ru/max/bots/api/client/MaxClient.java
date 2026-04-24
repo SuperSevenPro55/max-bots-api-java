@@ -30,7 +30,11 @@ public class MaxClient {
     public MaxClient(String botToken, String baseUrl) {
         this.botToken = botToken;
         this.baseUrl = UrlUtils.urlUnification(baseUrl);
-        this.client = new OkHttpClient();
+        this.client = new OkHttpClient.Builder()
+                .connectTimeout(java.time.Duration.ofSeconds(10))
+                .writeTimeout(java.time.Duration.ofSeconds(10))
+                .readTimeout(java.time.Duration.ofSeconds(60)) // <--- Увеличиваем до 60 секунд
+                .build();
         this.mapper = new ObjectMapper();
     }
 
@@ -51,17 +55,18 @@ public class MaxClient {
         Request okRequest = request.buildRequest(baseUrl, botToken, mapper);
 
         try (Response response = client.newCall(okRequest).execute()) {
+            String responseBodyString = response.body() != null ? response.body().string() : "";
+
             if (!response.isSuccessful()) {
-                throw new MaxApiException("Ошибка MAX API. HTTP статус: " + response.code());
+                throw new MaxApiException("Ошибка MAX API. Статус: " + response.code());
             }
 
-            if (response.body() == null) {
-                throw new MaxApiException("Тело ответа пустое");
-            }
+            // ВАЖНО: Используем тип из самого объекта запроса.
+            // Jackson поймет, что нужно вернуть именно T.
+            return mapper.readValue(responseBodyString, request.getResponseType());
 
-            return mapper.readValue(response.body().byteStream(), request.getResponseType());
         } catch (IOException e) {
-            throw new MaxApiException("Ошибка сети при выполнении запроса", e);
+            throw new MaxApiException("Ошибка сети", e);
         }
     }
 }
