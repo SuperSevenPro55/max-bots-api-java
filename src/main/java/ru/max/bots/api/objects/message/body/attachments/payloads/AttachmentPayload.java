@@ -23,8 +23,8 @@ import ru.max.bots.api.objects.MaxApiObject;
         @JsonSubTypes.Type(value = FileAttachmentPayload.class, name = "file"),
         @JsonSubTypes.Type(value = StickerAttachmentPayload.class, name = "sticker"),
         @JsonSubTypes.Type(value = ContactAttachmentPayload.class, name = "contact"),
-        @JsonSubTypes.Type(value = ShareAttachmentPayload.class, name = "share")
-
+        @JsonSubTypes.Type(value = ShareAttachmentPayload.class, name = "share"),
+        @JsonSubTypes.Type(value = Keyboard.class, name = "inline_keyboard")
 })
 public interface AttachmentPayload extends MaxApiObject {
 }
