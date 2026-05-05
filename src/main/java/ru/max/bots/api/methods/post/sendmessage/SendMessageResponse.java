@@ -9,7 +9,6 @@ import ru.max.bots.api.objects.message.Message;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SendMessageResponse {
 
-    // Вот оно, то самое корневое поле из JSON!
     @JsonProperty("message")
     private Message message;
 
