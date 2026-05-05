@@ -34,8 +34,6 @@ class MaxClientTest {
 
     @Test
     void testMockGetMe() throws Exception {
-        // ЭЛЕГАНТНЫЙ WIREMOCK:
-        // Используем .withBodyFile(), WireMock сам найдет файл в папке __files
         stubFor(get(urlEqualTo("/me"))
                 .withHeader("Authorization", equalTo("test-token"))
                 .willReturn(aResponse()
@@ -45,7 +43,6 @@ class MaxClientTest {
 
         BotInfo botInfo = client.execute(new GetMe());
 
-        // 1. Проверяем базовые поля (учитываем, что user_id может быть Long)
         assertNotNull(botInfo);
         assertEquals(12345L, botInfo.getUserId());
         assertEquals("Bot_Name", botInfo.getFirstName());
@@ -53,17 +50,14 @@ class MaxClientTest {
         assertTrue(botInfo.getIsBot());
         assertEquals(1739184000000L, botInfo.getLastActivityTime());
 
-        // 2. Проверяем новые поля, специфичные для BotInfo
         assertNotNull(botInfo.getDescription());
         assertTrue(botInfo.getDescription().startsWith("🚀 Автовыдача"));
         assertEquals("https://i.oneme.ru/i?r=BTFjO43w8Yr1OSJ4tcurq5HiGFXTgmcNFCqWsL5eFLaBsq_WO3gNo_PCmzpboct_jy8", botInfo.getAvatarUrl());
         assertEquals("https://i.oneme.ru/i?r=BTFjO43w8Yr1OSJ4tcurq5HiHBeIhpWE6pyKskhnmJMdXK_WO3gNo_PCmzpboct_jy8", botInfo.getFullAvatarUrl());
 
-        // 3. Проверяем десериализацию массива команд
         assertNotNull(botInfo.getCommands());
         assertEquals(2, botInfo.getCommands().size());
 
-        // В record поля вызываются как методы без get: name() вместо getName()
         assertEquals("start", botInfo.getCommands().get(0).name());
         assertEquals("Главное меню", botInfo.getCommands().get(0).description());
 

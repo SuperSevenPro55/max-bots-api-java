@@ -5,7 +5,6 @@ import lombok.Builder;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 import ru.max.bots.api.methods.MaxRequest;
-import ru.max.bots.api.objects.Update;
 
 import java.util.Objects;
 
