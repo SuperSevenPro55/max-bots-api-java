@@ -1,11 +1,11 @@
-package ru.max.bots.api.objects.message.body.attachments.buttons;
+package ru.max.bots.api.objects.newmessagebody.attachments.buttons;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record RequestGeoLocationButton(
+public record RequestGeoLocationButtonRequest(
         @JsonProperty("text")
         String text,
 
         @JsonProperty("quick")
         Boolean quick
-) implements Button {}
+) implements ButtonRequest {}

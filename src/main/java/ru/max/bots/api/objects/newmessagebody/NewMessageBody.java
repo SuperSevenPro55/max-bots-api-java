@@ -58,7 +58,7 @@ public class NewMessageBody implements MaxApiObject {
      * Опционально.
      */
     @JsonProperty(NOTIFY)
-    private boolean notify = true;
+    private Boolean notify = true;
 
     /**
      * Если установлен, текст сообщения будет форматирован данным способом

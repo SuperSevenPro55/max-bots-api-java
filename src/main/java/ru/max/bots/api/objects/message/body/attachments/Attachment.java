@@ -35,7 +35,8 @@ import ru.max.bots.api.objects.message.body.attachments.payloads.AttachmentPaylo
         @JsonSubTypes.Type(value = AttachmentSticker.class, name = "sticker"),
         @JsonSubTypes.Type(value = AttachmentContact.class, name = "contact"),
         @JsonSubTypes.Type(value = AttachmentShare.class, name = "share"),
-        @JsonSubTypes.Type(value = AttachmentInlineKeyboard.class, name = "inline_keyboard")
+        @JsonSubTypes.Type(value = AttachmentInlineKeyboard.class, name = "inline_keyboard"),
+        @JsonSubTypes.Type(value = AttachmentLocation.class, name = "location")
 })
 public class Attachment implements MaxApiObject {
     /**
