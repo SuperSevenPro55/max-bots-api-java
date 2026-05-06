@@ -73,7 +73,26 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <argLine>-Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8</argLine>
+                    <environmentVariables>
+                        <BOT_MAX_TOKEN>${BOT_MAX_TOKEN}</BOT_MAX_TOKEN>
+                    </environmentVariables>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub SuperSevenPro55 Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/SuperSevenPro55/max-bots-api-java</url>
+        </repository>
+    </distributionManagement>
 
 </project>
