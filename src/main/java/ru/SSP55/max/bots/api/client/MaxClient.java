@@ -25,11 +25,10 @@ public class MaxClient {
     /**
      * Конструктор клиента для отправки запросов к MAX API
      * @param botToken токен бота
-     * @param baseUrl базовый адрес сервера
      */
-    public MaxClient(String botToken, String baseUrl) {
+    public MaxClient(String botToken) {
         this.botToken = botToken;
-        this.baseUrl = UrlUtils.urlUnification(baseUrl);
+        this.baseUrl = "https://platform-api.max.ru";
         this.client = new OkHttpClient.Builder()
                 .connectTimeout(java.time.Duration.ofSeconds(10))
                 .writeTimeout(java.time.Duration.ofSeconds(10))
@@ -38,6 +37,16 @@ public class MaxClient {
         this.mapper = new ObjectMapper();
     }
 
+    public MaxClient(String botToken, String url) {
+        this.botToken = botToken;
+        this.baseUrl = UrlUtils.urlUnification(url);
+        this.client = new OkHttpClient.Builder()
+                .connectTimeout(java.time.Duration.ofSeconds(10))
+                .writeTimeout(java.time.Duration.ofSeconds(10))
+                .readTimeout(java.time.Duration.ofSeconds(60))
+                .build();
+        this.mapper = new ObjectMapper();
+    }
 
     /**
      * Универсальный метод для выполнения любого запроса к MAX API.

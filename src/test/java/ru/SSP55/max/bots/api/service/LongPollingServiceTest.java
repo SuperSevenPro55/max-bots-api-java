@@ -13,7 +13,7 @@ public class LongPollingServiceTest {
     @Test
     void testLongPollingWithDispatcher() throws InterruptedException {
         String token = System.getenv("BOT_MAX_TOKEN");
-        MaxClient client = new MaxClient(token, "https://platform-api.max.ru/");
+        MaxClient client = new MaxClient(token);
 
         CountDownLatch latch = new CountDownLatch(1);
 

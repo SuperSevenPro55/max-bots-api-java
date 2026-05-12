@@ -69,9 +69,7 @@ class MaxClientTest {
     void testRealGetMe() throws Exception {
         String realToken = System.getenv("BOT_MAX_TOKEN");
 
-        String baseUrl = "https://platform-api.max.ru/";
-
-        MaxClient client = new MaxClient(realToken, baseUrl);
+        MaxClient client = new MaxClient(realToken);
 
         BotInfo botInfo = client.execute(new GetMe());
 
