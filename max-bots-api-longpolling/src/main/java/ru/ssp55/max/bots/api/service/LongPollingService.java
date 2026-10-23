@@ -5,7 +5,7 @@ import ru.ssp55.max.bots.api.dispatcher.MaxBotUpdateDispatcher;
 import ru.ssp55.max.bots.api.dispatcher.MaxBotUpdateListener;
 import ru.ssp55.max.bots.api.method.subscription.longpolling.GetUpdates;
 import ru.ssp55.max.bots.api.method.subscription.longpolling.GetUpdatesResponse;
-import ru.ssp55.max.bots.api.objects.update.Update;
+import ru.ssp55.max.bots.api.model.update.Update;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

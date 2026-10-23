@@ -3,7 +3,7 @@ package ru.ssp55.max.bots.api.method.message;
 import lombok.Builder;
 import ru.ssp55.max.bots.api.method.HttpMethod;
 import ru.ssp55.max.bots.api.method.MaxRequest;
-import ru.ssp55.max.bots.api.objects.newmessagebody.NewMessageBody;
+import ru.ssp55.max.bots.api.model.message.NewMessageBody;
 import tools.jackson.core.type.TypeReference;
 
 import java.util.HashMap;

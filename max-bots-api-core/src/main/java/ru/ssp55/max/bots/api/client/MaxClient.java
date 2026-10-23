@@ -43,7 +43,7 @@ public class MaxClient {
         this.mapper = JsonMapper.builder().build();
     }
 
-    public <T> T execute(MaxRequest<T> request) throws MaxApiException {
+    public <T> T execute(MaxRequest<T> request) {
         try {
             URI uri = buildUri(request.getEndpoint(), request.getQueryParams());
 

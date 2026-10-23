@@ -1,1 +1,1 @@
-spring.autoconfigure.MaxBotAutoConfiguration
+ru.ssp55.max.bots.api.spring.autoconfigure.MaxBotAutoConfiguration

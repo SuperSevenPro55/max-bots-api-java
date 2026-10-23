@@ -1,0 +1,33 @@
+package ru.ssp55.max.bots.api.model.message.attachment;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+
+/**
+ * Вложение-файл
+ * @author SuperSevenPro55
+ * @version 0.2
+ */
+
+@Data
+@SuperBuilder
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+public class AttachmentFile extends Attachment {
+    /**
+     * Имя загруженного файла
+     */
+    @JsonProperty("filename")
+    String filename;
+
+    /**
+     * Размер файла в байтах
+     */
+    @JsonProperty("size")
+    String size;
+}

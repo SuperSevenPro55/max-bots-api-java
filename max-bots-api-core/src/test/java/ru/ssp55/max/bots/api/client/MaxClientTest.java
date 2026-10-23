@@ -7,7 +7,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.ssp55.max.bots.api.method.bot.GetMe;
-import ru.ssp55.max.bots.api.objects.user.BotInfo;
+import ru.ssp55.max.bots.api.model.user.BotInfo;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,7 +33,7 @@ class MaxClientTest {
     }
 
     @Test
-    void testMockGetMe() throws Exception {
+    void testMockGetMe() {
         stubFor(get(urlEqualTo("/me"))
                 .withHeader("Authorization", equalTo("test-token"))
                 .willReturn(aResponse()
@@ -65,7 +65,7 @@ class MaxClientTest {
     }
 
     @Test
-    void testRealGetMe() throws Exception {
+    void testRealGetMe() {
         String realToken = System.getenv("BOT_MAX_TOKEN");
 
         MaxClient client = new MaxClient(realToken);

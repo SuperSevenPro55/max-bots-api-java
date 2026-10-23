@@ -6,7 +6,7 @@ package ru.ssp55.max.bots.api.exception;
  * @version 0.1
  */
 
-public class MaxApiException extends Exception {
+public class MaxApiException extends RuntimeException {
     public MaxApiException() {
         super();
     }

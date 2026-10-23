@@ -1,21 +1,21 @@
 package ru.ssp55.max.bots.api.dispatcher;
 
-import ru.ssp55.max.bots.api.objects.update.Update;
-import ru.ssp55.max.bots.api.objects.update.bot.BotAddedUpdate;
-import ru.ssp55.max.bots.api.objects.update.bot.BotRemovedUpdate;
-import ru.ssp55.max.bots.api.objects.update.bot.BotStartedUpdate;
-import ru.ssp55.max.bots.api.objects.update.bot.BotStoppedUpdate;
-import ru.ssp55.max.bots.api.objects.update.chat.ChatTitleChangedUpdate;
-import ru.ssp55.max.bots.api.objects.update.dialog.DialogClearedUpdate;
-import ru.ssp55.max.bots.api.objects.update.dialog.DialogMutedUpdate;
-import ru.ssp55.max.bots.api.objects.update.dialog.DialogRemovedUpdate;
-import ru.ssp55.max.bots.api.objects.update.dialog.DialogUnmutedUpdate;
-import ru.ssp55.max.bots.api.objects.update.message.MessageCallbackUpdate;
-import ru.ssp55.max.bots.api.objects.update.message.MessageCreatedUpdate;
-import ru.ssp55.max.bots.api.objects.update.message.MessageEditedUpdate;
-import ru.ssp55.max.bots.api.objects.update.message.MessageRemovedUpdate;
-import ru.ssp55.max.bots.api.objects.update.user.UserAddedUpdate;
-import ru.ssp55.max.bots.api.objects.update.user.UserRemovedUpdate;
+import ru.ssp55.max.bots.api.model.update.Update;
+import ru.ssp55.max.bots.api.model.update.bot.BotAddedUpdate;
+import ru.ssp55.max.bots.api.model.update.bot.BotRemovedUpdate;
+import ru.ssp55.max.bots.api.model.update.bot.BotStartedUpdate;
+import ru.ssp55.max.bots.api.model.update.bot.BotStoppedUpdate;
+import ru.ssp55.max.bots.api.model.update.chat.ChatTitleChangedUpdate;
+import ru.ssp55.max.bots.api.model.update.dialog.DialogClearedUpdate;
+import ru.ssp55.max.bots.api.model.update.dialog.DialogMutedUpdate;
+import ru.ssp55.max.bots.api.model.update.dialog.DialogRemovedUpdate;
+import ru.ssp55.max.bots.api.model.update.dialog.DialogUnmutedUpdate;
+import ru.ssp55.max.bots.api.model.update.message.MessageCallbackUpdate;
+import ru.ssp55.max.bots.api.model.update.message.MessageCreatedUpdate;
+import ru.ssp55.max.bots.api.model.update.message.MessageEditedUpdate;
+import ru.ssp55.max.bots.api.model.update.message.MessageRemovedUpdate;
+import ru.ssp55.max.bots.api.model.update.user.UserAddedUpdate;
+import ru.ssp55.max.bots.api.model.update.user.UserRemovedUpdate;
 
 public interface MaxBotUpdateListener {
     default void onUpdate(Update update) {}

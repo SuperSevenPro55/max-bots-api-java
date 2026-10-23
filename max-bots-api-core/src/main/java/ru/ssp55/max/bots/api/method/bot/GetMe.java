@@ -3,7 +3,7 @@ package ru.ssp55.max.bots.api.method.bot;
 import tools.jackson.core.type.TypeReference;
 import ru.ssp55.max.bots.api.method.HttpMethod;
 import ru.ssp55.max.bots.api.method.MaxRequest;
-import ru.ssp55.max.bots.api.objects.user.BotInfo;
+import ru.ssp55.max.bots.api.model.user.BotInfo;
 
 /**
  * Метод возвращает информацию о боте, который идентифицируется с помощью токена доступа access_token.

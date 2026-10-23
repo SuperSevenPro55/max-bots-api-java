@@ -3,8 +3,8 @@ package ru.ssp55.max.bots.api.service;
 import org.junit.jupiter.api.Test;
 import ru.ssp55.max.bots.api.client.MaxClient;
 import ru.ssp55.max.bots.api.dispatcher.MaxBotUpdateListener;
-import ru.ssp55.max.bots.api.objects.update.message.MessageCallbackUpdate;
-import ru.ssp55.max.bots.api.objects.update.message.MessageCreatedUpdate;
+import ru.ssp55.max.bots.api.model.update.message.MessageCallbackUpdate;
+import ru.ssp55.max.bots.api.model.update.message.MessageCreatedUpdate;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
