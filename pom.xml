@@ -23,7 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <jackson.version>3.2.4</jackson.version>
-        <lombok.version>1.18.42</lombok.version>
+        <lombok.version>1.18.48</lombok.version>
         <slf4j.version>2.0.17</slf4j.version>
         <spring-boot.version>4.1.1</spring-boot.version>
         <junit.version>6.0.3</junit.version>
@@ -74,4 +74,12 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/SuperSevenPro55/max-bots-api-java</url>
+        </repository>
+    </distributionManagement>
 </project>
